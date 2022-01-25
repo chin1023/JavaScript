@@ -1,6 +1,7 @@
-# promise
+# Promise
 
 用來改善 JavaScript 非同步的語法結構
+
 
 
 ## 狀態
@@ -14,11 +15,13 @@
 ![image](https://github.com/chin1023/javascript/blob/main/promise.png)
 
 
+
 ## 特性
 
 * 當進入 fulfilled 或 rejected，狀態不會再改變
 * 如果要判斷 Promise 是否完成，可依據 Promise 事件中的 resolve 及 reject 是否有被調用
 * 在 Promise 的執行函式中，可以看到以下兩個屬性：`[[PromiseStatus]]`, `[[PromiseValue]]`
+
 
 創建Promise
 
@@ -34,6 +37,7 @@ const promise = new Promise(function(resolve, reject) {
 });
 ```
 
+
 * Promise.prototype.then(onFulfilled, onRejected)
   - Promise 物件生成後，可以用 then() 方法來綁定當 fulfilled 或 rejected 狀態時，進行分別要執行的函數，並回傳新的 Promise
   * 第一個函數是當 Promise 狀態變為成功時會被調用
@@ -41,6 +45,7 @@ const promise = new Promise(function(resolve, reject) {
 
 ```javascript
 //promise.then(onFulfilled, onRejected);
+
 promise.then(function(value) {
   // 當狀態是 fulfilled (成功) 時，執行這個函數
   // value 是透過 resolve() 傳進來的參數
@@ -51,6 +56,8 @@ promise.then(function(value) {
 
 });
 ```
+
+
 * Promise.prototype.catch(onRejected)
   - Promise 物件生成後，可以用 catch() 方法來綁定當 rejected 狀態時，以執行的函數，並回傳新的 Promise
 
@@ -66,6 +73,7 @@ promise.catch(function(reason) {
   // 當狀態是 rejected (失敗) 時，執行這個函數
 });
 ```
+
 
 * then() vs catch() 的失敗回呼差異
   當遇到 reject 時，接下來會直接跳到 catch，在其後的 then 都不會執行, 故使用 then 接收失敗, 可以用此方式確保所有的鏈接都能夠被執行。
@@ -89,6 +97,7 @@ promise(1)
   })
 ```
 
+
 * Promise.all()
   - 透過陣列的形式傳入多個 promise 函式，在全部執行完成後回傳陣列結果，陣列的結果順序與一開始傳入的一致
   * 若所有 Promise 物件狀態都變為 fulfilled，而所有 Promise 物件，會被組成一個陣列回傳
@@ -108,6 +117,7 @@ Promise.all([p1, p2, p3]).then(function(values) {
 // 會顯示 [3, 1337, "foo"]
 ```
 
+
 * Promise.race()
   - 透過陣列的形式傳入多個 promise 函式，在全部執行完成後回傳單一結果，回傳結果為第一個執行完成的
 
@@ -126,6 +136,7 @@ Promise.race([p1, p2]).then(function(value) {
 // 會顯示 "two"，因為 p2 比較快被 resolve
 ```
 
+
 * Promise.resolve()
   - 將一個物件轉型為 Promise (如果它不是一個 Promise 物件)，然後立刻 resolve
 
@@ -139,6 +150,7 @@ Promise.resolve('Success').then(function(value) {
 // 輸出 "Success"
 ```
 
+
 * Promise.reject()
   - 將一個物件轉型為 Promise (如果它不是一個 Promise 物件)，然後立刻 reject
 
@@ -151,6 +163,7 @@ Promise.reject(new Error('Fail')).then(function(error) {
 
 // 輸出 "Fail"
 ```
+
 
 * Promise.finally()
   - 可以使用 finally 來確認工作結束，finally 不帶有任何參數
@@ -179,15 +192,14 @@ Promise.resolve('OK')
 ```
 
 
-## Promise 優點
+## Promise 優缺點
 
+優點:
 1. 統一非同步 API 
 2. 解決 callback hell 的問題，將非同步操作以同步操作的流程表達出來
 3. 程式碼易讀，更好的進行錯誤處理
 
-
-## Promise 缺點
-
+缺點:
 1. 無法取消Promise，一旦新建它就會立即執行，無法中途取消
 2. 如果不設置回調函數，Promise內部拋出的錯誤，不會反應到外部
 3. 當處於Pending狀態時，無法得知目前進展到哪一個階段
