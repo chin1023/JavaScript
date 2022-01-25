@@ -201,6 +201,7 @@ Promise.resolve('OK')
 ```
 
 
+&nbsp;
 ## Promise 優缺點
 
 優點:
