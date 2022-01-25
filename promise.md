@@ -3,6 +3,7 @@
 用來改善 JavaScript 非同步的語法結構
 
 
+&nbsp;
 ## 狀態
 
 在非同步的過程中，有著不同的進度狀態，可以藉由 Promise 看到以下狀態：
@@ -12,9 +13,9 @@
 * rejected：事件已經執行完畢但操作失敗，回傳 rejected 的結果
 
 ![image](https://github.com/chin1023/javascript/blob/main/promise.png)
+
+
 &nbsp;
-
-
 ## 特性
 
 * 當進入 fulfilled 或 rejected，狀態不會再改變
@@ -39,7 +40,7 @@ const promise = new Promise(function(resolve, reject) {
 
 
 &nbsp;
-* Promise.prototype.then(onFulfilled, onRejected)
+* `Promise.prototype.then(onFulfilled, onRejected)`  
   Promise 物件生成後，可以用 then() 方法來綁定當 fulfilled 或 rejected 狀態時，進行分別要執行的函數，並回傳新的 Promise
   * 第一個函數是當 Promise 狀態變為成功時會被調用
   * 第二個函數是當 Promise 狀態變為失敗時會被調用，這個參數是選擇性的不一定需要
@@ -60,7 +61,7 @@ promise.then(function(value) {
 
 
 &nbsp;
-* Promise.prototype.catch(onRejected)
+* `Promise.prototype.catch(onRejected)`  
   Promise 物件生成後，可以用 catch() 方法來綁定當 rejected 狀態時，以執行的函數，並回傳新的 Promise
 
 ```javascript
@@ -78,7 +79,7 @@ promise.catch(function(reason) {
 
 
 &nbsp;
-* then() vs catch() 的失敗回呼差異
+* `then() vs catch() 的失敗回呼差異`  
   當遇到 reject 時，接下來會直接跳到 catch，在其後的 then 都不會執行, 故使用 then 接收失敗, 可以用此方式確保所有的鏈接都能夠被執行。
 
 ```javascript
@@ -102,7 +103,7 @@ promise(1)
 
 
 &nbsp;
-* Promise.all()
+* `Promise.all()`  
   透過陣列的形式傳入多個 promise 函式，在全部執行完成後回傳陣列結果，陣列的結果順序與一開始傳入的一致
   * 若所有 Promise 物件狀態都變為 fulfilled，而所有 Promise 物件，會被組成一個陣列回傳
   * 若其中一個 Promise 物件狀態變為 rejected，第一個被 reject 的值會被回傳
@@ -123,7 +124,7 @@ Promise.all([p1, p2, p3]).then(function(values) {
 
 
 &nbsp;
-* Promise.race()
+* `Promise.race()`  
   透過陣列的形式傳入多個 promise 函式，在全部執行完成後回傳單一結果，回傳結果為第一個執行完成的
 
 ```javascript
@@ -143,7 +144,7 @@ Promise.race([p1, p2]).then(function(value) {
 
 
 &nbsp;
-* Promise.resolve()
+* `Promise.resolve()`  
   將一個物件轉型為 Promise (如果它不是一個 Promise 物件)，然後立刻 resolve
 
 ```javascript
@@ -158,7 +159,7 @@ Promise.resolve('Success').then(function(value) {
 
 
 &nbsp;
-* Promise.reject()
+* `Promise.reject()`  
   將一個物件轉型為 Promise (如果它不是一個 Promise 物件)，然後立刻 reject
 
 ```javascript
@@ -171,8 +172,9 @@ Promise.reject(new Error('Fail')).then(function(error) {
 // 輸出 "Fail"
 ```
 
+
 &nbsp;
-* Promise.finally()
+* `Promise.finally()`  
   可以使用 finally 來確認工作結束，finally 不帶有任何參數
 
 ```javascript
